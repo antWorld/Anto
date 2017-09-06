@@ -49,12 +49,11 @@
     </build>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-client -->
-        <!--  <dependency>
+          <dependency>
               <groupId>org.apache.activemq</groupId>
               <artifactId>activemq-client</artifactId>
               <version>5.14.1</version>
           </dependency>
-  -->
         <!--以下为通过jmsTemplate集成ActiveMq所需jar-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
