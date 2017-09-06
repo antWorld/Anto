@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.busi"/>
+    <!--   <bean id="greetingImpl" class="com.busi.GreetingImpl"/>
+       <bean id="greetingAdvice" class="com.busi.GreetingAdvice"/>-->
+    <bean id="greetingAdviceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="interfaces" value="com.busi.test1.Apoly"/><!-- 需要动态实现的接口注意不再是Greeting接口-->
+        <property name="target" ref="greetingImpl"/><!--代理接口实现 目标类-->
+        <property name="interceptorNames"><!--拦截器名称（增强实现的名称也是一个component组件）-->
+            <list>
+                <value>greetingAdvice</value>
+            </list>
+        </property>
+        <property name="proxyTargetClass" value="true"/><!--是否代理类的实现,采用cglib代理实现 默认为false，采用JDK动态代理实现 -->
+    </bean>
+
+</beans>
